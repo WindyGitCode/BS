@@ -1,0 +1,10 @@
+/Library/
+/Temp/
+/Logs/
+/obj/
+/UserSettings/
+/Packages/
+*.vs
+*.csproj
+*.sln
+!/Packages/manifest.json
