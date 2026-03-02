@@ -4,7 +4,9 @@
 /obj/
 /UserSettings/
 /Packages/
+/ProjectSettings/
 *.vs
 *.csproj
 *.sln
 !/Packages/manifest.json
+*.vsconfig
