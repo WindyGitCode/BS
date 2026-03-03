@@ -6,7 +6,7 @@ public class Main : MonoBehaviour
 {
     public void Awake()
     {
-        //UIMgr.Instance.ShowPanel<beginPanel>();
+        UIMgr.Instance.ShowPanel<BeginPanel>();
     }
     private void Update()
     {

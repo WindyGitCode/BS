@@ -11,7 +11,7 @@ public class UIMgr
     private Dictionary<string, BasePanel> panelDic=new Dictionary<string, BasePanel>();
     private UIMgr()
     {
-        GameObject canvas = Resources.Load<GameObject>("canvas");
+        GameObject canvas = Resources.Load<GameObject>("UI/canvas");
         GameObject Icanvas= GameObject.Instantiate(canvas);
         GameObject.DontDestroyOnLoad(Icanvas);
         canvasTrans = Icanvas.transform;
@@ -24,9 +24,7 @@ public class UIMgr
             return panelDic[panelName]as T;//字典已有面板 直接返回
         //字典没有面板 添加面板
         GameObject panelObj = Resources.Load<GameObject>("UI/"+panelName);
-        Debug.Log(panelObj.name);
         GameObject Ipanel= GameObject.Instantiate(panelObj);
-        Debug.Log(Ipanel.name);
         Ipanel.transform.SetParent(canvasTrans, false);
         T panel=Ipanel.GetComponent<T>();
         //if(!panelDic.ContainsKey(panelName))
