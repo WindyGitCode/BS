@@ -44,12 +44,12 @@ public abstract class BasePanel : MonoBehaviour
     public void ShowMe()
     {
         isShow = true;
-        canvasGroup.alpha = 1;
+        canvasGroup.alpha = 0;
     }
     public void HideMe(UnityAction unityAction)
     {
         isShow=false;
-        canvasGroup.alpha = 0;
+        canvasGroup.alpha = 1;
         hideMeCallFunc = unityAction; 
     }
 

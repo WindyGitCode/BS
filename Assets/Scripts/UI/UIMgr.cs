@@ -41,15 +41,13 @@ public class UIMgr
             {
                 panelDic[panelName].HideMe(() =>
                 {
-                    GameObject panelObj = panelDic[panelName].gameObject;
-                    GameObject.Destroy(panelObj);
+                    GameObject.Destroy(panelDic[panelName].gameObject);
                     panelDic.Remove(panelName);
                 });
             }
             else
             {
-                GameObject panelObj = panelDic[panelName].gameObject;
-                GameObject.Destroy(panelObj);
+                GameObject.Destroy(panelDic[panelName].gameObject);
                 panelDic.Remove(panelName);
             }
         }

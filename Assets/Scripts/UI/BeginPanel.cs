@@ -14,18 +14,20 @@ public class BeginPanel : BasePanel
     {
         btnBegin.onClick.AddListener(() =>
         {
-            Debug.Log("BeginPanelClick");
+            UIMgr.Instance.ShowPanel<ChoosePaternPanel>();
+            UIMgr.Instance.HidePanel<BeginPanel>();
         });
         btnSetting.onClick.AddListener(() =>
         {
-            //#
+            UIMgr.Instance.ShowPanel<SettingPanel>();
+                UIMgr.Instance.HidePanel<BeginPanel>();
         });
         btnAbout.onClick.AddListener(() => {
             //#
         });
         btnExit.onClick.AddListener(() =>
         {
-            Application.Quit();
+            //
         });
     }
 }
