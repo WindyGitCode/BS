@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChooseHeroPanel : BasePanel
@@ -14,7 +15,7 @@ public class ChooseHeroPanel : BasePanel
         cam.gameObject.GetComponent<CameraRotate>().Rotate_Right();
         btnBegin.onClick.AddListener(() =>
         {
-            //#
+            SceneManager.LoadScene("gameScene");
         });
         btnBack.onClick.AddListener(() =>
         {
