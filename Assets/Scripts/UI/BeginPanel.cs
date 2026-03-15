@@ -20,7 +20,7 @@ public class BeginPanel : BasePanel
         btnSetting.onClick.AddListener(() =>
         {
             UIMgr.Instance.ShowPanel<SettingPanel>();
-                UIMgr.Instance.HidePanel<BeginPanel>();
+            UIMgr.Instance.HidePanel<BeginPanel>();
         });
         btnAbout.onClick.AddListener(() => {
             //#

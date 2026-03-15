@@ -265,8 +265,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 0}
   isShow: 0
+  cam: {fileID: 0}
   btnBegin: {fileID: 3619860098914097301}
   btnBack: {fileID: 6139028748130378964}
+  turnLeft: {fileID: 6050162124039354908}
+  turnRight: {fileID: 5379089024466463245}
+  heroName: 
+  heroList: []
 --- !u!1 &819004500185487883
 GameObject:
   m_ObjectHideFlags: 0
