@@ -6,9 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;//动画器
     public E_weapon nowWeapon;//当前武器
-    public float rotateSpeed;//旋转速度
-    public float atk;//攻击力
-    public int money;//已有金钱
+    public float rotateSpeed=80;//旋转速度
     private float screenNormalizedFactor;//屏幕尺寸归一化
     /// <summary>
     /// 角色控制器

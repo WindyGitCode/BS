@@ -35,6 +35,8 @@ public class ChooseHeroPanel : BasePanel
         btnBegin.onClick.AddListener(() =>
         {
             UIMgr.Instance.HidePanel<ChooseHeroPanel>();
+            // 保存选择的英雄名称
+            GameDataMgr.Instance.playerData.nowHeroName = heroList[currentHeroIndex].name; 
             SceneManager.LoadScene("TowerDefenceScene");
         });
 
@@ -73,6 +75,7 @@ public class ChooseHeroPanel : BasePanel
         foreach (string name in heroNames)
         {
             GameObject heroPrefab = Resources.Load<GameObject>($"Prefabs/Role/{name}");
+            heroPrefab.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Controller/ChoosePanel_Pose_Controller");
             if (heroPrefab != null)
             {
                 heroList.Add(heroPrefab);

@@ -17,6 +17,8 @@ public class CameraLookAt : MonoBehaviour
     {
         if(target == null)
         {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            target = playerObj.transform.Find("LookAtPoint");
             return;
         }
         cameraPos=target.position + target.forward * cameraOffset.z + target.up * cameraOffset.y + target.right * cameraOffset.x;
