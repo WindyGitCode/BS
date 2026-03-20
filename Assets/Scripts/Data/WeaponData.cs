@@ -6,7 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponData
 {
-    public E_Weapon weaponType;       // 类型
+    public E_Weapon weaponType;       // 具体类型
+    public int weaponTypeCode;   // 类型代码（用于判断是否可携带）
     public string weaponName;         // 名称
     public int price;                 // 商店售价（0表示免费/已解锁）
     public string animControllerPath; // 动画控制器路径

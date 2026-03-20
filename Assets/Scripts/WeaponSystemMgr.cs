@@ -9,7 +9,7 @@ public class WeaponSystemMgr : Singleton<WeaponSystemMgr>
     // 所有武器配置（可从JSON加载，也可在Inspector配置）
     public List<WeaponData> allWeapons = new List<WeaponData>();
     // 资源缓存（避免重复Load）
-    private Dictionary<E_Weapon, WeaponData> weaponDict = new Dictionary<E_Weapon, WeaponData>();
+    public Dictionary<E_Weapon, WeaponData> weaponDict = new Dictionary<E_Weapon, WeaponData>();
     protected override void Awake()
     {
         base.Awake();
@@ -28,13 +28,13 @@ public class WeaponSystemMgr : Singleton<WeaponSystemMgr>
         // 方式2：手动初始化（测试用，可替换为JSON加载）
         if (allWeapons.Count == 0)
         {
-            AddWeapon(E_Weapon.Knife, "匕首", 0, "Controller/RoleGamingController/Knife_Controller",
+            AddWeapon(E_Weapon.Knife, 0 , "匕首", 0, "Controller/RoleGamingController/Knife_Controller",
                       "Effects/KnifeHit", "Audio/KnifeHit", 0, 0, true);
-            AddWeapon(E_Weapon.Handgun, "沙漠之鹰", 500, "Controller/RoleGamingController/Handgun_Controller",
+            AddWeapon(E_Weapon.Handgun, 1,"沙漠之鹰", 500, "Controller/RoleGamingController/Handgun_Controller",
                       "Effects/GunFire", "Audio/HandgunFire", 20, 0.2f, false);
-            AddWeapon(E_Weapon.MainGun, "AK47", 2000, "Controller/RoleGamingController/Rifle_Controller",
+            AddWeapon(E_Weapon.MainGun, 2,"AK47", 2000, "Controller/RoleGamingController/Rifle_Controller",
                       "Effects/GunFire", "Audio/RifleFire", 30, 0.1f, false);
-            AddWeapon(E_Weapon.Grenade, "破片手雷", 300, "Controller/RoleGamingController/Grenade_Controller",
+            AddWeapon(E_Weapon.Grenade,3, "破片手雷", 300, "Controller/RoleGamingController/Grenade_Controller",
                       "Effects/GrenadeExplode", "Audio/GrenadeExplode", 0, 2f, false);
         }
 
@@ -53,7 +53,7 @@ public class WeaponSystemMgr : Singleton<WeaponSystemMgr>
     /// <summary>
     /// 添加武器配置（手动初始化用）
     /// </summary>
-    private void AddWeapon(E_Weapon type, string name, int price, string animPath,
+    private void AddWeapon(E_Weapon type, int typeCode, string name, int price, string animPath,
                           string effectPath, string audioPath, int maxAmmo, float fireRate, bool isUnlocked)
     {
         WeaponData data = new WeaponData();
