@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// 武器系统管理器（负责武器数据加载、资源缓存、购买解锁）
+/// 武器系统管理器
 /// </summary>
 public class WeaponSystemMgr : Singleton<WeaponSystemMgr>
 {
@@ -10,7 +10,6 @@ public class WeaponSystemMgr : Singleton<WeaponSystemMgr>
     public List<WeaponData> allWeapons = new List<WeaponData>();
     // 资源缓存（避免重复Load）
     private Dictionary<E_Weapon, WeaponData> weaponDict = new Dictionary<E_Weapon, WeaponData>();
-
     protected override void Awake()
     {
         base.Awake();
@@ -102,7 +101,7 @@ public class WeaponSystemMgr : Singleton<WeaponSystemMgr>
     /// 购买武器（商店调用）
     /// </summary>
     public bool BuyWeapon(E_Weapon weaponType)
-    {
+    { 
         if (weaponDict.TryGetValue(weaponType, out WeaponData weapon))
         {
             // 校验是否已解锁/金币是否足够

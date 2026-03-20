@@ -102,6 +102,8 @@ public class LevelController : Singleton<LevelController>
 
         CurrentLevelState = E_LevelState.Running;
         OnLevelStateChanged?.Invoke(CurrentLevelState);
+        //关卡面板显示
+        UIMgr.Instance.ShowPanel<GamingPanel>();
         //实例化角色,绑定角色脚本
         GameObject hero = Resources.Load<GameObject>($"Prefabs/Role/{playerData.nowHeroName}");
         GameObject heroObj= Instantiate(hero, new Vector3(220, 29, 220), Quaternion.identity);
