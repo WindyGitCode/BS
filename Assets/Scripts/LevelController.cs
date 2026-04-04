@@ -60,7 +60,7 @@ public class LevelController : Singleton<LevelController>
     public void InitLevelData(E_LevelType levelType, int levelID = 1)
     {
         // 重置所有关卡数据
-        playerData=GameDataMgr.Instance.playerData;
+        playerData= PlayerMgr.Instance.playerData;
         currentLevelType = levelType;
         currentLevelID = levelID;
         levelTime = 0;
@@ -106,9 +106,9 @@ public class LevelController : Singleton<LevelController>
         UIMgr.Instance.ShowPanel<GamingPanel>();
         //实例化角色,绑定角色脚本
         GameObject hero = Resources.Load<GameObject>($"Prefabs/Role/{playerData.nowHeroName}");
-        GameObject heroObj= Instantiate(hero, new Vector3(220, 29, 220), Quaternion.identity);
+        GameObject heroObj= Instantiate(hero, new Vector3(163, 20, 117), Quaternion.identity);
         heroObj.AddComponent<PlayerController>();
-        heroObj.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Controller/RoleGamingController/Handgun_Controller");
+        //heroObj.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>($"Controller/RoleGamingController/Handgun_Controller");
         Debug.Log($"关卡启动 | 类型：{currentLevelType} | ID：{currentLevelID}");
     }
     /// <summary>

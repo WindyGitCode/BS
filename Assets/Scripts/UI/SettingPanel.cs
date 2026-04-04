@@ -12,39 +12,39 @@ public class SettingPanel : BasePanel
     public Slider sliderSound;
     public override void Init()
     {
-        toggleMusic.isOn = BKmusic.Instance.musicData.isMusicOn;
-        toggleSound.isOn = BKmusic.Instance.musicData.isSoundOn;
-        sliderMusic.value = BKmusic.Instance.musicData.musicVolume;
-        sliderSound.value = BKmusic.Instance.musicData.soundVolume;
+        toggleMusic.isOn = MusicMgr.Instance.musicData.isMusicOn;
+        toggleSound.isOn = MusicMgr.Instance.musicData.isSoundOn;
+        sliderMusic.value = MusicMgr.Instance.musicData.musicVolume;
+        sliderSound.value = MusicMgr.Instance.musicData.soundVolume;
         btnExit.onClick.AddListener(() =>
         {
-            GameDataMgr.Instance.SaveMusicData();
+            MusicMgr.Instance.SaveMusicData();
             UIMgr.Instance.HidePanel<SettingPanel>();
             UIMgr.Instance.ShowPanel<BeginPanel>();
         });
         toggleMusic.onValueChanged.AddListener((isOn) =>
         {
             //设置音乐开关
-            BKmusic.Instance.SetBKMusicIsOn(isOn);
-            BKmusic.Instance.musicData.isMusicOn = isOn;
+            MusicMgr.Instance.SetBKMusicIsOn(isOn);
+            MusicMgr.Instance.musicData.isMusicOn = isOn;
         });
         toggleSound.onValueChanged.AddListener((isOn) =>
         {
             //设置音效开关
-            BKmusic.Instance.SetBKSoundIsOn(isOn);
-            BKmusic.Instance.musicData.isSoundOn = isOn;
+            MusicMgr.Instance.SetBKSoundIsOn(isOn);
+            MusicMgr.Instance.musicData.isSoundOn = isOn;
         });
         sliderMusic.onValueChanged.AddListener((value) =>
         {
             //设置音乐音量
-            BKmusic.Instance.SetMusicVolume(value);
-            BKmusic.Instance.musicData.musicVolume = value;
+            MusicMgr.Instance.SetMusicVolume(value);
+            MusicMgr.Instance.musicData.musicVolume = value;
         });
         sliderSound.onValueChanged.AddListener((value) =>
         {
             //设置音效音量
-            BKmusic.Instance.setSoundVolume(value);
-            BKmusic.Instance.musicData.soundVolume = value;
+            MusicMgr.Instance.setSoundVolume(value);
+            MusicMgr.Instance.musicData.soundVolume = value;
         });
     }
 }

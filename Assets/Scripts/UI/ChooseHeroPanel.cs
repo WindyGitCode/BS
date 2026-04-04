@@ -36,7 +36,7 @@ public class ChooseHeroPanel : BasePanel
         {
             UIMgr.Instance.HidePanel<ChooseHeroPanel>();
             // 保存选择的英雄名称
-            GameDataMgr.Instance.playerData.nowHeroName = heroList[currentHeroIndex].name; 
+            PlayerMgr.Instance.playerData.nowHeroName = heroList[currentHeroIndex].name; 
             SceneManager.LoadScene("TowerDefenceScene");
         });
 

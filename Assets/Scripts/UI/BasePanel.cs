@@ -41,12 +41,12 @@ public abstract class BasePanel : MonoBehaviour
             }
         }
     }
-    public void ShowMe()
+    public virtual void ShowMe()
     {
         isShow = true;
         canvasGroup.alpha = 0;
     }
-    public void HideMe(UnityAction unityAction)
+    public virtual void HideMe(UnityAction unityAction)
     {
         isShow=false;
         canvasGroup.alpha = 1;

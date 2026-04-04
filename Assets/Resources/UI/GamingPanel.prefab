@@ -377,6 +377,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 0}
   isShow: 0
+  towerBlood: {fileID: 5644962192973786282}
+  playerBlood: {fileID: 0}
+  strengh: {fileID: 0}
+  towerNowHP: {fileID: 4582662629139447673}
+  towerMaxHP: {fileID: 0}
+  playerNowHP: {fileID: 0}
+  playerMaxHP: {fileID: 0}
+  nowStrengh: {fileID: 0}
+  maxStrengh: {fileID: 0}
 --- !u!1 &3426773282917088521
 GameObject:
   m_ObjectHideFlags: 0

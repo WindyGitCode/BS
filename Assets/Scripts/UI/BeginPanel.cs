@@ -23,7 +23,8 @@ public class BeginPanel : BasePanel
             UIMgr.Instance.HidePanel<BeginPanel>();
         });
         btnAbout.onClick.AddListener(() => {
-            //#
+            //≤‚ ‘
+            UIMgr.Instance.ShowPanel<TipPanel>();
         });
         btnExit.onClick.AddListener(() =>
         {
