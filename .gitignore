@@ -1,0 +1,70 @@
+# ==============================================================================
+# Unity 项目 .gitignore  (Unity 2022.3)
+# 目标：只跟踪「项目源码与资源」，排除 Unity / IDE 自动生成的中间产物
+# ==============================================================================
+
+# ---------------------------- Unity 自动生成目录 ----------------------------
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Unity 崩溃报告
+sysinfo.txt
+crashlytics-build.properties
+
+# ---------------------------- IDE / 编辑器 ----------------------------
+.vs/
+.idea/
+.vscode/
+.gradle/
+.consulo/
+ExportedObj/
+
+# Unity 与 IDE 自动生成的工程文件（可由 .csproj 重新生成，不应入库）
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# ---------------------------- 第三方工具缓存 ----------------------------
+[Aa]ssets/AssetStoreTools*
+[Aa]ssets/Plugins/Editor/JetBrains*
+
+# ---------------------------- 操作系统 ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------- 构建产物 / 打包文件 ----------------------------
+*.apk
+*.aab
+*.unitypackage
+*.app
+*.ipa
+
+# ---------------------------- 说明 ----------------------------
+# 注意：以下内容【必须】被跟踪，请勿加入忽略列表：
+#   Assets/               项目全部源码与资源（含 .meta）
+#   Packages/manifest.json
+#   Packages/packages-lock.json
+#   ProjectSettings/      项目设置
+#   .vsconfig
+#
+# 关于 Assets/_TerrainAutoUpgrade/：
+#   该目录由 Unity 地形升级流程生成，体积可忽略，为保证地形引用完整仍纳入跟踪。

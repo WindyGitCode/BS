@@ -1,0 +1,76 @@
+{
+  "monsterList": [
+    {
+      "monsterID": 1,
+      "monsterName": "",
+      "maxHP": 100,
+      "atk": 10,
+      "atkRange": 2.0,
+      "moveSpeed": 4.0,
+      "rotateSpeed": 20.0,
+      "objectPath": "Prefabs/Monster/Z1",
+      "animationPath": "Controller/RunningController/NormalMonster_run.overrideController",
+      "atkCD": 1.0
+    },
+    {
+      "monsterID": 2,
+      "monsterName": "",
+      "maxHP": 100,
+      "atk": 10,
+      "atkRange": 1.0,
+      "moveSpeed": 20.0,
+      "rotateSpeed": 20.0,
+      "objectPath": "Prefabs/Monster/Z1",
+      "animationPath": "Controller/RunningController/NormalMonster_run.overrideController",
+      "atkCD": 1.0
+    },
+    {
+      "monsterID": 3,
+      "monsterName": "",
+      "maxHP": 100,
+      "atk": 10,
+      "atkRange": 1.0,
+      "moveSpeed": 20.0,
+      "rotateSpeed": 20.0,
+      "objectPath": "Prefabs/Monster/Z1",
+      "animationPath": "Controller/RunningController/NormalMonster_run.overrideController",
+      "atkCD": 1.0
+    },
+    {
+      "monsterID": 4,
+      "monsterName": "",
+      "maxHP": 100,
+      "atk": 10,
+      "atkRange": 1.0,
+      "moveSpeed": 20.0,
+      "rotateSpeed": 20.0,
+      "objectPath": "Prefabs/Monster/Z1",
+      "animationPath": "Controller/RunningController/NormalMonster_run.overrideController",
+      "atkCD": 1.0
+    },
+    {
+      "monsterID": 5,
+      "monsterName": "",
+      "maxHP": 100,
+      "atk": 10,
+      "atkRange": 1.0,
+      "moveSpeed": 20.0,
+      "rotateSpeed": 20.0,
+      "objectPath": "Prefabs/Monster/Z1",
+      "animationPath": "Assets/MonsterSys/Resources/Controller/RunningController/NormalMonster_run.overrideController",
+      "atkCD": 1.0
+    },
+    {
+      "monsterID": 6,
+      "monsterName": "",
+      "maxHP": 100,
+      "atk": 10,
+      "atkRange": 1.0,
+      "moveSpeed": 20.0,
+      "rotateSpeed": 20.0,
+      "objectPath": "Prefabs/Monster/Z1",
+      "animationPath": "Assets/MonsterSys/Resources/Controller/RunningController/NormalMonster_run.overrideController",
+      "atkCD": 1.0
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+# ==============================================================================
+# Unity 项目 .gitattributes
+# ==============================================================================
+# 【核心策略：字节级精确（byte-exact），不做任何行尾归一化】
+#
+# 为什么不用 `* text=auto`：
+#   本项目 .cs 文件混用 UTF-8 与 GBK(936) 两种编码，且工作区行尾不统一。
+#   一旦启用 text 归一化，git 会在仓库内把行尾存为 LF，并在每次 checkout 时
+#   按 core.eol 写回 CRLF —— 即“回滚”之后拿到的文件与原始状态字节不一致，
+#   约 3000 个文件的行尾会被静默改写。
+#   本项目 Git 的首要目的是「改坏了能精确还原」，因此这里用 `* -text`
+#   关闭一切行尾转换：提交什么字节，回滚就还原什么字节。
+#
+# 注意：`-text` 只关闭行尾转换，不影响 diff，文本文件依然可正常比对。
+#
+# 关于二进制资源：
+#   本项目 Unity 序列化模式为 ForceText（m_SerializationMode: 2），但实测
+#   Assets 下 2115 个 .unity/.prefab/.asset/.mat 中有 14 个含 NUL 字节，
+#   是真正的二进制资源。所以【绝对不要】对这些扩展名写裸 `text`（强制文本），
+#   否则会在提交时被改写而损坏。`* -text` 对它们天然安全。
+#
+# 未声明 merge driver：UnityYAMLMerge 需在 .git/config 额外配置，未配置就声明
+#   会在冲突时报错，故不启用。
+# ==============================================================================
+
+# ---------------------- 默认：不做任何行尾转换（字节精确） ----------------------
+* -text
+
+# ---------------------- 明确标记为二进制 ----------------------
+# 作用：告知 git 这些文件不要尝试文本 diff / 合并，提升性能并避免误判。
+# 这些格式一定是二进制，显式声明比依赖内容探测更可靠。
+
+# 程序集 / 调试符号
+*.dll   binary
+*.pdb   binary
+*.mdb   binary
+*.so    binary
+*.dylib binary
+*.a     binary
+*.lib   binary
+*.exp   binary
+*.def   binary
+
+# 图片 / 贴图
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.bmp   binary
+*.tga   binary
+*.tif   binary
+*.tiff  binary
+*.psd   binary
+*.exr   binary
+*.hdr   binary
+*.iff   binary
+*.pict  binary
+
+# 音视频
+*.wav   binary
+*.mp3   binary
+*.ogg   binary
+*.aiff  binary
+*.aif   binary
+*.flac  binary
+*.mp4   binary
+*.mov   binary
+*.webm  binary
+*.unitypackage binary
+
+# 3D 模型 / 字体 / 其它
+*.fbx   binary
+*.obj   binary
+*.blend binary
+*.max   binary
+*.mb    binary
+*.ma    binary
+*.c4d   binary
+*.3ds   binary
+*.dxf   binary
+*.ttf   binary
+*.otf   binary
+*.cubemap binary
+*.renderTexture binary
+*.bytes binary
+*.zip   binary
+*.7z    binary
+*.rar   binary
+*.gz    binary
+*.tar   binary
+
+# 构建产物
+*.apk   binary
+*.aab   binary
+*.app   binary
+*.ipa   binary
