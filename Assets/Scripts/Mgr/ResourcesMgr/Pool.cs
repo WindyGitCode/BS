@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BS.ResourceManagement
@@ -53,8 +53,15 @@ namespace BS.ResourceManagement
             // 先挂到常驻的 [Pool] 根节点下，保证过场景时不被销毁
             GameObject go = Object.Instantiate(_prefab, _owner.IdleRoot);
 
-            // 去掉 "(Clone)" 后缀，让 Profiler / Hierarchy 里便于辨认
-            go.name = _prefab.name;
+            // 【刻意不改名】Instantiate 产生的名字是 "Xxx(Clone)"，这里保持不变。
+            //
+            // 原因：本项目现有代码存在依赖克隆名的判断，例如
+            //   TowerBullet.cs:37/41/46  if (gameObject.name == "TowerBullet_1(Clone)")
+            // 用来区分子弹类型。若在此处把名字改成 prefab.name（去掉 "(Clone)"），
+            // 那些比较会全部失效，子弹将打不出任何伤害。
+            //
+            // 池化迁移期不做这种「静默改变行为」的改动。等依赖名字的逻辑被
+            // 改为序列化字段/枚举之后，再启用改名以美化 Hierarchy 与 Profiler 显示。
             go.SetActive(false);
             CreatedCount++;
 
