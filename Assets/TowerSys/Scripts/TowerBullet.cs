@@ -1,6 +1,9 @@
+using BS.ResourceManagement;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TowerBullet : MonoBehaviour
+public class TowerBullet : MonoBehaviour,BS.ResourceManagement.IPoolable
 {
     private Transform target;
     private int damage;
@@ -18,13 +21,21 @@ public class TowerBullet : MonoBehaviour
         dir = (target.position - transform.position).normalized;
         dir.y = 0;
     }
-
+    public void OnSpawn()
+    {
+        destroyTimer = 2f;      // 兜底
+        target = null; 
+        damage = 0; 
+        speed = 0f; 
+        dir = Vector3.zero;
+    }
+    public void OnDespawn() { }
     private void Update()
     {
         destroyTimer -= Time.deltaTime;
         if (destroyTimer <= 0)
         {
-            Destroy(gameObject);
+            PoolService.Instance.Despawn(gameObject);
             return;
         }
         transform.Translate(dir * speed * Time.deltaTime, Space.World);
@@ -56,7 +67,7 @@ public class TowerBullet : MonoBehaviour
         {
             return;
         }
-        Destroy(gameObject);
+        PoolService.Instance.Despawn(gameObject);
     }
 
     public GameObject explosionEffect;   //爆炸特效
@@ -64,13 +75,7 @@ public class TowerBullet : MonoBehaviour
     public bool isExplosiveBullet = false; // 3号子弹勾上
     void ExplodeAreaDamage()
     {
-        // 1. 播放爆炸特效
-        if (explosionEffect != null)
-        {
-            GameObject eff = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            Destroy(eff, 2f); // 2秒后销毁特效
-        }
-
+        PoolService.Instance.Spawn(explosionEffect, transform.position, Quaternion.identity);
         // 2. 范围检测所有敌人
         Collider[] hitEnemies = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -95,5 +100,15 @@ public class TowerBullet : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, explosionRadius);
         }
+    }
+
+    public void New()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Free()
+    {
+        throw new System.NotImplementedException();
     }
 }

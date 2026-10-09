@@ -1,3 +1,4 @@
+using BS.ResourceManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ public class TowerController : MonoBehaviour
     private float attackTimer;
     private int towerLevel;
     public AudioClip fireSFX;
+
+    //缓存子弹
+    GameObject bullet_1;
+    GameObject bullet_2;
+    GameObject bullet_3;
     /// <summary>
     /// 根据等级初始化炮台属性
     /// </summary>
@@ -22,6 +28,10 @@ public class TowerController : MonoBehaviour
         towerLevel = level;
         data = TowerDataMgr.GetTowerDataByLevel(level,towerName);
         attackTimer = data.attackInterval;
+
+        bullet_1=Resources.Load<GameObject>(bulletPath_1);
+        bullet_2 = Resources.Load<GameObject>(bulletPath_2);
+        bullet_3 = Resources.Load<GameObject>(bulletPath_3);
     }
 
     private void Start()
@@ -88,7 +98,7 @@ public class TowerController : MonoBehaviour
         switch (data.towerName)
         {
             case "1":
-                bulletPrefab = Resources.Load<GameObject>(bulletPath_1);
+                bulletPrefab = bullet_1;
                 if (bulletPrefab == null)
                 {
                     Debug.LogError("未找到子弹预制体 Resources/TowerBullet_1");
@@ -96,7 +106,7 @@ public class TowerController : MonoBehaviour
                 }
                 break;
             case "2":
-                bulletPrefab = Resources.Load<GameObject>(bulletPath_2);
+                bulletPrefab = bullet_2;
                 if (bulletPrefab == null)
                 {
                     Debug.LogError("未找到子弹预制体 Resources/TowerBullet_2");
@@ -104,7 +114,7 @@ public class TowerController : MonoBehaviour
                 }
                 break;
             case "3":
-                bulletPrefab = Resources.Load<GameObject>(bulletPath_3);
+                bulletPrefab = bullet_3;
                 if (bulletPrefab == null)
                 {
                     Debug.LogError("未找到子弹预制体 Resources/TowerBullet_3");
@@ -119,7 +129,7 @@ public class TowerController : MonoBehaviour
         {
             if (fireSFX != null)
                 AudioMgr.Instance.PlaySFX(fireSFX);
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = PoolService.Instance.Spawn(bulletPrefab, firePoint.position, firePoint.rotation);
             TowerBullet b = bullet.GetComponent<TowerBullet>();
             b.SetData(targetEnemy, data.damage, data.bulletSpeed);
         }

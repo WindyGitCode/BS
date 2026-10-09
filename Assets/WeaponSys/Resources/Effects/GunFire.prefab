@@ -19236,6 +19236,7 @@ GameObject:
   - component: {fileID: 19800008}
   - component: {fileID: 19900008}
   - component: {fileID: -4869135244089411826}
+  - component: {fileID: 7847894574221106837}
   m_Layer: 0
   m_Name: GunFire
   m_TagString: Untagged
@@ -24047,3 +24048,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa53301106f010c469f22bf98c98b8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7847894574221106837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44f25ce9ff9e95268ebec3a88fd541d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 0.5
+  useUnscaledTime: 0

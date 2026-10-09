@@ -1,3 +1,4 @@
+using BS.ResourceManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,6 +80,8 @@ public class SurvivalLevelMgr : Singleton<SurvivalLevelMgr>
         else if (currentState == SurvivalState.Ended)
         {
             // 游戏结束后可能的结算逻辑
+            PoolService.Instance.DespawnAllRented(monsterPrefab);  // 强制收回还在场的
+            PoolService.Instance.ClearAll(destroyRented: true);   // 整体销毁
         }
     }
     // 外部接口：开始游戏
@@ -112,7 +115,7 @@ public class SurvivalLevelMgr : Singleton<SurvivalLevelMgr>
         
         StopAllCoroutines();
         currentState = SurvivalState.Ended;
-        LoseAllObject();
+        //LoseAllObject();
         UIMgr.Instance.HidePanel<SafeTimePanel>();
         UIMgr.Instance.ShowPanel<LosePanel>();
     }
@@ -171,7 +174,7 @@ public class SurvivalLevelMgr : Singleton<SurvivalLevelMgr>
         //    obj.transform.position = point.position;
         //    obj.transform.rotation = point.rotation;
         //});
-        Instantiate(monsterPrefab, point.position, point.rotation);
+        PoolService.Instance.Spawn(monsterPrefab, point.position, point.rotation);
     }
 
     // ======================================================

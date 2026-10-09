@@ -1,3 +1,4 @@
+using BS.ResourceManagement;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
@@ -49,20 +50,13 @@ public class Grenade : MonoBehaviour
         // 特效
         if (explosionEffect != null)
         {
-            GameObject eff = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            // 自动销毁（2秒后删除）
-            Destroy(eff, 2f);
+            GameObject eff = PoolService.Instance.Spawn(explosionEffect, transform.position, Quaternion.identity);
         }
         //音效
         if (BoomAudioClip != null)
         {
-            // 创建临时音效物体播放
-            GameObject soundObj = new GameObject("GrenadeSound");
-            soundObj.transform.position = transform.position;
-            AudioSource audioSource = soundObj.AddComponent<AudioSource>();
-            audioSource.PlayOneShot(BoomAudioClip);
-            Destroy(soundObj, 2f);
+            AudioMgr.Instance.PlaySFX(BoomAudioClip);
         }
-        Destroy(gameObject);
+        PoolService.Instance.Despawn(gameObject);
     }
 }

@@ -1,3 +1,4 @@
+using BS.ResourceManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -437,7 +438,7 @@ public class WeaponController : MonoBehaviour
             Debug.LogError("手雷预制体加载失败！");
             yield break;
         }
-        GameObject grenadeObj = Instantiate(grenadePrefab, GrenadeThrowPoint.position, transform.rotation);
+        GameObject grenadeObj = PoolService.Instance.Spawn(grenadePrefab, GrenadeThrowPoint.position, transform.rotation);
         Grenade grenade = grenadeObj.GetComponent<Grenade>();
 
         grenade.damage = config.damage;
@@ -461,7 +462,7 @@ public class WeaponController : MonoBehaviour
         FindMuzzlePoint();
         if (muzzlePoint != null)
         {
-            GameObject effect = Instantiate(weaponDict[nowWeapon].fireEffectPrefab, muzzlePoint.position, muzzlePoint.rotation);
+            GameObject effect = PoolService.Instance.Spawn(weaponDict[nowWeapon].fireEffectPrefab, muzzlePoint.position, muzzlePoint.rotation);
             if (nowWeapon == E_Weapon.MainGun)
             {
                 effect.transform.up = transform.forward;

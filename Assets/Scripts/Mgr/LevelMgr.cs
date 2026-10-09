@@ -1,3 +1,4 @@
+using BS.ResourceManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,8 +110,8 @@ public class LevelMgr : Singleton<LevelMgr>
         if (CurrentLevelState == E_LevelState.Running)
         {
             levelTime += Time.deltaTime;
-        }
-        RunTimeDrivenSpawnSystem();
+            RunTimeDrivenSpawnSystem();
+        } 
     }
     // 初始化关卡数据
     public void InitLevelData(E_LevelType levelType, int levelID = 1)
@@ -246,6 +247,9 @@ public class LevelMgr : Singleton<LevelMgr>
         Debug.Log("所有敌人已击杀,关卡胜利！");
         EventMgr.Instance.Trigger(EventConst.WinGame);
         UIMgr.Instance.ShowPanel<WinPanel>();
+
+        PoolService.Instance.DespawnAllRented(ranMonster);  // 先强制收回还在场的
+        PoolService.Instance.ClearAll(destroyRented: true);   // 再整体销毁
     }
 
     // 关卡失败
@@ -259,6 +263,9 @@ public class LevelMgr : Singleton<LevelMgr>
         //设置物品数量(本事件用于设置物资数量，关卡模式胜利和失败结算方式一样，故发胜利事件)
         EventMgr.Instance.Trigger(EventConst.WinGame);
         Debug.Log("游戏结束！");
+
+        PoolService.Instance.DespawnAllRented(ranMonster);  // 先强制收回还在场的
+        PoolService.Instance.ClearAll(destroyRented: true);   // 再整体销毁
     }
    
     #region 怪物生成与管理
@@ -297,7 +304,7 @@ public class LevelMgr : Singleton<LevelMgr>
         Transform point = bornPoints[randomIndex];
 
         // 生成怪物
-        GameObject monster = Instantiate(monsterPrefab, point.position, point.rotation);
+        GameObject monster = PoolService.Instance.Spawn(monsterPrefab, point.position, point.rotation);
         Debug.Log("生成怪物：" + monster.name);
     }
 
@@ -335,6 +342,7 @@ public class LevelMgr : Singleton<LevelMgr>
     /// <summary>
     /// 时间驱动刷怪器
     /// </summary>
+    GameObject ranMonster;
     private void RunTimeDrivenSpawnSystem()
     {
         //时间到自动刷怪
@@ -346,7 +354,7 @@ public class LevelMgr : Singleton<LevelMgr>
             if (spawnedMonsterCount < totalMonsterCount)
             {
                 // 随机拿一种怪物生成
-                GameObject ranMonster = GetRandomMonsterPrefab();
+                ranMonster = GetRandomMonsterPrefab();
                 SpawnMonster(ranMonster);
                 spawnedMonsterCount++;
             }

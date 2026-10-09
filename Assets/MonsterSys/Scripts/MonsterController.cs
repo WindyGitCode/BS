@@ -1,10 +1,11 @@
+using BS.ResourceManagement;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using TMPro;
 using UnityEngine.UI;
 
-public class MonsterController : MonoBehaviour
+public class MonsterController : MonoBehaviour,IPoolable
 {
     public MonsterConfig monsterData;// 怪物数据
     
@@ -21,12 +22,25 @@ public class MonsterController : MonoBehaviour
     private Transform targetPlayer; // 玩家目标
     private float attackTimer; // 攻击间隔计时器
     private AudioClip deadAudio;//死亡音效
+    //拓展
+    private PooledDelayedDespawn _delayedDespawn;
 
-    void Start()
+    void Awake()
+    {
+        _delayedDespawn = GetComponent<PooledDelayedDespawn>();
+    }
+    public void OnSpawn()
     {
         InitMonster();
+        attackTimer = 0f;
+        targetTower = null;
+        targetPlayer = null;
+        isFinishAnim = 0;
     }
-
+    public void OnDespawn()
+    {
+        StopAllCoroutines();
+    }
     void Update()
     {
         if (targetPlayer == null)
@@ -53,30 +67,36 @@ public class MonsterController : MonoBehaviour
     {
         //初始化
         monsterData = MonsterDataMgr.Instance.GetMonsterDataByID(1);
+        // 获取动画组件
+        animator = GetComponentInChildren<Animator>();
         deadAudio = Resources.Load<AudioClip>("Audio/MonsterDead");
         if (deadAudio == null)
         {
             Debug.Log("未加载到deadAudio");
         }
-        // 获取动画组件
-        animator = GetComponentInChildren<Animator>();
-        // 获取寻路组件
+        // 寻路相关
         navAgent = GetComponent<NavMeshAgent>();
-        currentHP = monsterData.maxHP;
-        navAgent.speed = monsterData.moveSpeed;
-        isDead = false;
-        isAttacking = false;
-        isDamaged = false;
-        isWalking = false;
-        if(navAgent == null)
+        if (navAgent == null)
         {
             Debug.LogError("敌人缺少NavMeshAgent组件！");
             return;
         }
-        else
+        navAgent.speed = monsterData.moveSpeed;
+        navAgent.isStopped = false;
+        navAgent.ResetPath();
+        navAgent.Warp(transform.position);
+        if(animator != null)
         {
-            //Debug.Log("敌人NavMeshAgent组件加载成功");
+            animator.Rebind();
+            animator.Update(0f);
         }
+        
+        currentHP = monsterData.maxHP;
+        isDead = false;
+        isAttacking = false;
+        isDamaged = false;
+        isWalking = false;
+        
     }
 
     #region 寻找目标（优先玩家，其次主塔）
@@ -216,7 +236,9 @@ public class MonsterController : MonoBehaviour
         //音效
         AudioMgr.Instance.PlaySFX(deadAudio);
         // 死亡后2秒销毁敌人
-        Destroy(gameObject, 2f);
+        if (_delayedDespawn != null) _delayedDespawn.DespawnAfter(2f);
+        else Destroy(gameObject, 2f);
+
         EventMgr.Instance.Trigger(EventConst.MonsterKilled);
         //生存模式击杀奖励
         if (ChoosePaternPanel.GameMode == E_LevelType.Survival)

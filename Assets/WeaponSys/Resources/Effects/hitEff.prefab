@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2529769397105275954}
   - component: {fileID: 6044905728603020047}
   - component: {fileID: 7035025531233008336}
+  - component: {fileID: 7525627547455789625}
   m_Layer: 0
   m_Name: hitEff
   m_TagString: Untagged
@@ -4837,3 +4838,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7525627547455789625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053421325765463533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44f25ce9ff9e95268ebec3a88fd541d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 1
+  useUnscaledTime: 0
