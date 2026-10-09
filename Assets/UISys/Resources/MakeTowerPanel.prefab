@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 6438077417438125732}
   - component: {fileID: 1165840392301709980}
   - component: {fileID: 8294681546584143890}
+  - component: {fileID: 3881789087945811666}
   m_Layer: 5
   m_Name: btn
   m_TagString: Untagged
@@ -597,6 +598,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3881789087945811666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2210203197827455569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262202cda154fef4b8e3e37344e2533c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.08
+  pressScale: 0.96
+  duration: 0.12
+  ease: 6
+  ignoreTimeScale: 1
+  skipWhenNotInteractable: 1
 --- !u!1 &2764603833280319009
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +628,7 @@ GameObject:
   - component: {fileID: 4576142454306296518}
   - component: {fileID: 547105103782391503}
   - component: {fileID: 5168401840905987268}
+  - component: {fileID: 282895467995848560}
   m_Layer: 5
   m_Name: btn
   m_TagString: Untagged
@@ -718,6 +738,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &282895467995848560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764603833280319009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262202cda154fef4b8e3e37344e2533c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.08
+  pressScale: 0.96
+  duration: 0.12
+  ease: 6
+  ignoreTimeScale: 1
+  skipWhenNotInteractable: 1
 --- !u!1 &3482648767645873152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,6 +1736,7 @@ GameObject:
   - component: {fileID: 2676165154012571600}
   - component: {fileID: 5113134431501571497}
   - component: {fileID: 9102831474345768130}
+  - component: {fileID: 2665342764858742948}
   m_Layer: 5
   m_Name: btn
   m_TagString: Untagged
@@ -1807,6 +1846,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2665342764858742948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8162523711094774807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262202cda154fef4b8e3e37344e2533c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.08
+  pressScale: 0.96
+  duration: 0.12
+  ease: 6
+  ignoreTimeScale: 1
+  skipWhenNotInteractable: 1
 --- !u!1 &8705090885613861697
 GameObject:
   m_ObjectHideFlags: 0

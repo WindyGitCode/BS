@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MonsterController : MonoBehaviour
 {
-    public MonsterConfig monsterData;// 怪物数据（通过编辑器赋值，包含ID，出生时会根据ID从数据管理器获取完整数据）
+    public MonsterConfig monsterData;// 怪物数据
     
     public bool isDead;
     public bool isAttacking;
@@ -24,12 +24,6 @@ public class MonsterController : MonoBehaviour
 
     void Start()
     {
-        monsterData = MonsterDataMgr.Instance.GetMonsterDataByID(1);
-        deadAudio = Resources.Load<AudioClip>("Audio/MonsterDead");
-        if (deadAudio == null)
-        {
-            Debug.Log("未加载到deadAudio");
-        }
         InitMonster();
     }
 
@@ -57,6 +51,13 @@ public class MonsterController : MonoBehaviour
     // 初始化敌人
     void InitMonster()
     {
+        //初始化
+        monsterData = MonsterDataMgr.Instance.GetMonsterDataByID(1);
+        deadAudio = Resources.Load<AudioClip>("Audio/MonsterDead");
+        if (deadAudio == null)
+        {
+            Debug.Log("未加载到deadAudio");
+        }
         // 获取动画组件
         animator = GetComponentInChildren<Animator>();
         // 获取寻路组件
